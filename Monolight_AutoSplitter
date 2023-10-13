@@ -1,0 +1,35 @@
+//MonoLight Auto Splitter by ToastedDough
+
+state("MonoLights")
+{
+	int levelNumber: "UnityPlayer.dll", 0x01797AD8, 0xD0, 0x8, 0xA0, 0x54, 0x18;
+    int Loading: "UnityPlayer.dll", 0x01761888, 0x38;
+}
+
+start
+{
+	if(current.levelNumber == 2)
+    {
+        return true;
+    }
+}
+
+split
+{
+     if(current.levelNumber > old.levelNumber)
+    {
+        return true;
+    }
+}
+
+isLoading
+{
+    if(current.Loading == 0 && current.levelNumber != 2)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
